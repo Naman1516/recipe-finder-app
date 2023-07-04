@@ -44,7 +44,7 @@ const Main = () => {
                             area={result?.strArea}
                             drinkAlternative={result?.strDrinkAlternative}
                         />
-                    ) : <p className='text-2xl font-semibold m-8'>Recipie not found...</p>
+                    ) : <p className='text-2xl font-semibold m-8'>Recipe not found...</p>
                 }
             </div>
         </div>
