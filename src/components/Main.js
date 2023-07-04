@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useRandomMeal from '../customHooks/useRandomMeal';
 import MealCard from './MealCard';
 import { API_URI } from '../utilities/constants';
+import SearchByApi from './SearchByApi';
 
 const Main = () => {
     const [searchText, setSearchText] = useState("");
@@ -11,26 +12,44 @@ const Main = () => {
     const searchMeal = async () => {
         try {
             const data = await fetch(API_URI + "/search.php?s=" + searchText);
-            const json = await data.json();
+            const json = await data.json() || [];
 
-            setMeal(json?.meals[0]);
+            setMeal(json?.meals);
         } catch (e) {
             console.error(e);
         }
     };
 
-    if (randomMeal === null) return;
-
-    const isRandom = !meal;
-    const { idMeal: id, strMealThumb: thumbnail, strMeal: name, strCategory: category, strArea: area, strDrinkAlternative: drinkAlternative } = meal || randomMeal;
+    useEffect(() => {
+        if (randomMeal) {
+            setMeal([randomMeal]);
+        }
+    }, [randomMeal]);
 
     return (
         <div className='flex flex-col items-center mt-6'>
-            <div className='flex justify-center items-center'>
-                <input type="text" placeholder={name} name="taskInput" value={searchText} onChange={(e) => setSearchText(e.target.value)} className="input input-bordered input-primary w-full max-w-xs truncate ..." />
-                <button onClick={searchMeal} className='btn btn-primary ml-5'>Search</button>
+            <SearchByApi
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder={randomMeal?.strMeal}
+                searchMeal={searchMeal}
+            />
+            <div className='flex flex-wrap justify-evenly'>
+                {meal != null ?
+                    meal.map((result) =>
+                        <MealCard
+                            key={result?.idMeal}
+                            id={result?.idMeal}
+                            thumbnail={result?.strMealThumb}
+                            name={result?.strMeal}
+                            category={result?.strCategory}
+                            area={result?.strArea}
+                            drinkAlternative={result?.strDrinkAlternative}
+                            isRandom={!meal}
+                        />
+                    ) : <p className='text-2xl font-semibold m-8'>Recipie not found...</p>
+                }
             </div>
-            <MealCard id={id} thumbnail={thumbnail} name={name} category={category} area={area} drinkAlternative={drinkAlternative} isRandom={isRandom} />
         </div>
     );
 };
