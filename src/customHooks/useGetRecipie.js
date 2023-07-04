@@ -12,7 +12,7 @@ const useGetRecipie = (recipieId) => {
         try {
             const data = await fetch(API_URI + "/lookup.php?i=" + recipieId);
             const json = await data.json();
-            console.log(json?.meals[0]);
+
             setRecipieDetails(json?.meals[0]);
         } catch (e) {
             console.error(e);

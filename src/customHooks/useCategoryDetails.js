@@ -12,7 +12,7 @@ const useCategoryDetails = (categoryName) => {
         try {
             const data = await fetch(API_URI + "/filter.php?c=" + categoryName);
             const json = await data.json();
-            console.log(json?.meals);
+
             setCategoryDetails(json?.meals);
         } catch (e) {
             console.error(e);

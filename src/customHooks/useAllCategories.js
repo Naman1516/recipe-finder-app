@@ -12,7 +12,7 @@ const useAllCategories = () => {
         try {
             const data = await fetch(API_URI + "/categories.php");
             const json = await data.json();
-            console.log(json?.categories);
+
             setAllCategories(json?.categories);
         } catch (e) {
             console.error(e);

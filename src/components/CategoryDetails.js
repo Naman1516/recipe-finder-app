@@ -1,32 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useCategoryDetails from '../customHooks/useCategoryDetails';
 import { Link } from 'react-router-dom';
+import AllMealsCard from './AllMealsCard';
+import SearchInput from './SearchInput';
 
-const CateogoryDetails = () => {
+const CategoryDetails = () => {
     const { categoryName } = useParams();
-    const details = useCategoryDetails(categoryName);
+    const data = useCategoryDetails(categoryName);
+    const [filterValue, setFilterValue] = useState('');
 
-    if (details === null) return;
+    if (data === null) return null;
+
+    const filteredData = data.filter(detail =>
+        detail.strMeal.toLowerCase().includes(filterValue.toLowerCase())
+    );
 
     return (
-        <div className='flex flex-wrap justify-evenly items-center'>
-            {
-                details.map((detail) => (
-                    <div className="card w-96 bg-base-100 shadow-xl m-4" key={detail?.idMeal}>
-                        <figure>
-                            <img src={detail?.strMealThumb} alt={detail?.strMeal} className='rounded m-4 h-60 w-full' />
-                        </figure>
-                        <div className="card-body">
-                            <h2 className="card-title mt-1">{detail?.strMeal}</h2>
-                            <div className="card-actions justify-end mt-1">
-                                <Link to={`/category/${categoryName}/${detail?.idMeal}`} className="btn btn-primary">Explore</Link>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+        <div className='flex flex-col mt-6'>
+            <SearchInput
+                value={filterValue}
+                onChange={(event) => setFilterValue(event.target.value)}
+                placeholder="Search by Meal..."
+            />
+            <div className='flex justify-evenly items-center flex-wrap'>
+                {filteredData.length ? (
+                    filteredData.map((detail) => (
+                        <AllMealsCard
+                            key={detail?.idMeal}
+                            id={detail?.idMeal}
+                            thumbnail={detail?.strMealThumb}
+                            name={detail?.strMeal}
+                            category={categoryName}
+                        />
+                    ))
+                ) : (
+                    <p className='text-2xl font-semibold m-8'>Meal not found...</p>
+                )}
+            </div>
         </div>
     );
 }
 
-export default CateogoryDetails;
+export default CategoryDetails;

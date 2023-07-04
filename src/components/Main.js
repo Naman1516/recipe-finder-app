@@ -27,7 +27,7 @@ const Main = () => {
     return (
         <div className='flex flex-col items-center mt-6'>
             <div className='flex justify-center items-center'>
-                <input type="text" placeholder={name} name="taskInput" value={searchText} onChange={(e) => setSearchText(e.target.value)} className="input input-bordered input-primary w-full max-w-xs" />
+                <input type="text" placeholder={name} name="taskInput" value={searchText} onChange={(e) => setSearchText(e.target.value)} className="input input-bordered input-primary w-full max-w-xs truncate ..." />
                 <button onClick={searchMeal} className='btn btn-primary ml-5'>Search</button>
             </div>
             <MealCard id={id} thumbnail={thumbnail} name={name} category={category} area={area} drinkAlternative={drinkAlternative} isRandom={isRandom} />

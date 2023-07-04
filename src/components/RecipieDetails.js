@@ -22,8 +22,6 @@ const RecipieDetails = () => {
             };
         }, {});
 
-    console.log({ formatedIngredients })
-
     return (
         <div>
             <div className='mt-8 flex flex-col items-center justify-center p-8 m-8'>

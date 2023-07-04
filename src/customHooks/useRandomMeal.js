@@ -12,7 +12,7 @@ const useRandomMeal = () => {
         try {
             const data = await fetch(API_URI + "/random.php");
             const json = await data.json();
-            console.log(json?.meals[0]);
+
             setRandomMeal(json?.meals[0]);
         } catch (e) {
             console.error(e);
