@@ -1,6 +1,5 @@
 import React from 'react'
 import ThemeSwitcher from './ThemeSwitcher'
-import SearchBar from './Search'
 import { NavLink } from 'react-router-dom'
 
 const Header = () => {
@@ -14,13 +13,6 @@ const Header = () => {
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                         <li><NavLink to="/">Home</NavLink></li>
                         <li><NavLink to="/categories">Categories</NavLink></li>
-                        <li>
-                            <a>Parent</a>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
                 <NavLink to="/" className="btn btn-ghost normal-case text-xl">Recipies Finder</NavLink>
@@ -30,24 +22,14 @@ const Header = () => {
                 <ul className="menu menu-horizontal px-1">
                     <li><NavLink to="/">Home</NavLink></li>
                     <li><NavLink to="/categories">Categories</NavLink></li>
-                    <li tabIndex={0}>
-                        <details>
-                            <summary>Parent</summary>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </details>
-                    </li>
                 </ul>
             </div>
 
             < div className="navbar-end" >
-                {/* <SearchBar /> */}
                 <ThemeSwitcher />
             </div >
         </div >
-    )
+    );
 }
 
-export default Header
+export default Header;
