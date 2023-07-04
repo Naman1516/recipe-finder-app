@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const MealCard = ({ id, thumbnail, name, category, area, drinkAlternative, isRandom }) => {
     return (
-        <div className="card bg-base-100 shadow-xl m-8 h-96 w-96">
+        <div className="card bg-base-100 shadow-xl m-8 h-96 w-80">
             <figure>
                 <img src={thumbnail} alt={name} height="208px" width="208px" className='rounded w-full' />
             </figure>
