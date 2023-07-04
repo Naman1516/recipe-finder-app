@@ -15,7 +15,7 @@ const Header = () => {
                         <li><NavLink to="/categories">Categories</NavLink></li>
                     </ul>
                 </div>
-                <NavLink to="/" className="btn btn-ghost normal-case text-xl">Recipes Finder</NavLink>
+                <NavLink to="/" className="btn btn-ghost normal-case text-xl">Recipes</NavLink>
             </div>
 
             <div className="navbar-center hidden lg:flex">
