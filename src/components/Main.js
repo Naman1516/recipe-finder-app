@@ -43,7 +43,6 @@ const Main = () => {
                             category={result?.strCategory}
                             area={result?.strArea}
                             drinkAlternative={result?.strDrinkAlternative}
-                            isRandom={!meal}
                         />
                     ) : <p className='text-2xl font-semibold m-8'>Recipie not found...</p>
                 }
