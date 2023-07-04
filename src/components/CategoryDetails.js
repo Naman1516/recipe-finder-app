@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useCategoryDetails from '../customHooks/useCategoryDetails';
-import { Link } from 'react-router-dom';
 import AllMealsCard from './AllMealsCard';
 import SearchInput from './SearchInput';
 

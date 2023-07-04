@@ -6,7 +6,7 @@ const useGetRecipie = (recipieId) => {
 
     useEffect(() => {
         getRecipieDetails();
-    }, []);
+    });
 
     const getRecipieDetails = async () => {
         try {

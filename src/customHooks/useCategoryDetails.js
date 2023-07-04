@@ -6,7 +6,7 @@ const useCategoryDetails = (categoryName) => {
 
     useEffect(() => {
         getCategoryDetails();
-    }, []);
+    }, [categoryDetails]);
 
     const getCategoryDetails = async () => {
         try {

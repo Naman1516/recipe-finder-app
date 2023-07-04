@@ -21,9 +21,7 @@ const Main = () => {
     };
 
     useEffect(() => {
-        if (randomMeal) {
-            setMeal([randomMeal]);
-        }
+        setMeal([randomMeal]);
     }, [randomMeal]);
 
     return (
@@ -35,10 +33,10 @@ const Main = () => {
                 searchMeal={searchMeal}
             />
             <div className='flex flex-wrap justify-evenly'>
-                {meal != null ?
+                {meal && meal.length ?
                     meal.map((result) =>
                         <MealCard
-                            key={result?.idMeal}
+                            key={result?.idMeal + 1}
                             id={result?.idMeal}
                             thumbnail={result?.strMealThumb}
                             name={result?.strMeal}
